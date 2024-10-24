@@ -1,0 +1,188 @@
+/* Estilo general para todas las páginas */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%; /* Para asegurar que el fondo cubra toda la pantalla */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f0f0; /* Color de fondo para páginas sin imagen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0; /* Eliminar cualquier margen del body */
+}
+
+/* Estilo específico para la página de login */
+/* Contenedor que incluye la imagen de fondo */
+.login-page {
+  position: relative;
+  background-image: url('https://media.istockphoto.com/id/525968631/es/foto/comida-sana-fondo.jpg?s=612x612&w=0&k=20&c=zmWUZ0JQ_L5l5z1AYH-K7A3OoqKMlmE1TgG5DnjC92U=');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw; /* Aseguramos que ocupe todo el ancho de la ventana */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 1; /* Para que el contenido esté encima del pseudo-elemento */
+}
+
+/* Aplicamos el fondo en un pseudo-elemento ::before */
+.login-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: inherit; /* Usa la misma imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5; /* Reduce la opacidad de la imagen */
+  z-index: -1; /* Envía la imagen al fondo */
+}
+
+/* Contenedor principal del formulario */
+.login-container {
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Sombra más fuerte */
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 1.5s ease; /* Animación al cargar */
+}
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Estilo del título */
+h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+/* Estilo de los campos de entrada */
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 15px 20px; /* Aumentamos el padding para los íconos */
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  color: #333;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  padding-left: 45px; /* Espacio para el ícono */
+}
+
+/* Íconos dentro de los campos de entrada */
+input[type="text"]::before, input[type="password"]::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #888;
+}
+
+/* Efecto al hacer focus en los campos */
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #5cb85c;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(92, 184, 92, 0.2);
+}
+
+/* Botón de enviar */
+button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Efecto hover en el botón */
+button[type="submit"]:hover {
+  background-color: #4cae4c;
+}
+
+/* Texto de ayuda */
+p {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Enlace de registro */
+p a {
+  color: #5cb85c;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+p a:hover {
+  color: #4cae4c;
+}
+
+/* Ajustes de los íconos en los campos de texto */
+.login-container {
+  position: relative;
+}
+
+#username {
+  background-image: url('https://img.icons8.com/ios-filled/50/000000/user.png');
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+#password {
+  background-image: url('https://img.icons8.com/ios-filled/50/000000/lock-2.png');
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+.logo-login {
+  width: 300px;  /* Ajusta el tamaño como prefieras */
+  max-height: 100px; /* Altura máxima */
+  margin-bottom: 20px; /* Para dar un poco de espacio debajo del logo */
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
