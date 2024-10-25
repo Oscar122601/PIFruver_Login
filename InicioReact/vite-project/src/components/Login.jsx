@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
-import LogoFruver from '../assets/logo-fruver.png';
+import LogoFruver from '../assets/logo-fruver.png'; // Importa la imagen del logo
 
+// Importa Firebase y las funciones de autenticación
 import appfirebase from '../credenciales';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-const auth = getAuth(appfirebase);
+const auth = getAuth(appfirebase); // Inicializa la autenticación con Firebase
 
+// Componente principal de Login
 const Login = () => {
-  const [registrando, setRegistrando] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(''); // Estado para el mensaje de error
+  const [registrando, setRegistrando] = useState(false); // Estado para alternar entre registro e inicio de sesión
+  const [errorMessage, setErrorMessage] = useState(''); // Estado para almacenar mensajes de error de autenticación
 
+  // Función de autenticación, que gestiona el inicio de sesión
   const autenticacion = async (e) => {
-    e.preventDefault();
-    const correo = e.target.username.value;
-    const contraseña = e.target.password.value;
+    e.preventDefault(); // Previene el comportamiento por defecto del formulario
+    const correo = e.target.username.value; // Obtiene el valor del campo de usuario
+    const contraseña = e.target.password.value; // Obtiene el valor del campo de contraseña
 
     try {
-      // Reiniciamos el estado del mensaje de error antes de intentar el inicio de sesión
+      // Reinicia el mensaje de error antes de intentar el inicio de sesión
       setErrorMessage('');
-      // Lógica para iniciar sesión
+      
+      // Lógica para iniciar sesión con Firebase
       await signInWithEmailAndPassword(auth, correo, contraseña);
-      console.log('Inicio de sesión exitoso');
+      console.log('Inicio de sesión exitoso'); // Muestra mensaje en consola si la autenticación es exitosa
     } catch (error) {
-      // Aquí puedes controlar el tipo de error
+      // Maneja diferentes tipos de errores de autenticación
       if (error.code === 'auth/wrong-password') {
         setErrorMessage('La contraseña es incorrecta.');
       } else if (error.code === 'auth/user-not-found') {
@@ -35,6 +39,7 @@ const Login = () => {
   return (
     <div className="login-page">
       <div className="login-container">
+        {/* Muestra el logo de la aplicación */}
         <img src={LogoFruver} alt="Logo" className="logo-login" />
         <h1>Iniciar Sesión</h1>
         
@@ -59,14 +64,14 @@ const Login = () => {
           <button type="submit">Ingresar</button>
         </form>
 
-        {/* Mostrar mensaje de error si hay uno */}
+        {/* Muestra mensaje de error si existe alguno */}
         {errorMessage && (
           <div className="error-message">
             <p>{errorMessage}</p>
           </div>
         )}
 
-        {/* Link a FontAwesome para iconos */}
+        {/* Link a FontAwesome para los iconos */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
@@ -76,4 +81,5 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login; // Exporta el componente Login para su uso en otras partes de la aplicación
+
