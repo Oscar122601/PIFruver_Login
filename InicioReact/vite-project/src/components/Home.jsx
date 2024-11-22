@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 
 const Home = () => {
-  return (
-    <div>
-        <h2>Home</h2>
-    </div>
-  )
-}
+  useEffect(() => {
+    window.location.href = 'http://localhost:5173/'; // Redirige al enlace deseado
+  }, []);
 
-export default Home
+  return null; // No muestra nada porque redirige automáticamente
+};
+
+export default Home;
